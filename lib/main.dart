@@ -10,6 +10,7 @@ class SignUpApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const SignUpScreen(),
+        '/welcome': (context) => const WelcomeScreen(),
       },
     );
   }
@@ -29,6 +30,19 @@ class SignUpScreen extends StatelessWidget {
             child: SignUpForm(),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Welcome!', style: Theme.of(context).textTheme.headline2,)
       ),
     );
   }
@@ -92,11 +106,15 @@ class _SignUpFormState extends State<SignUpForm> {
                     : Colors.blue;
               }),
             ),
-            onPressed: null,
+            onPressed: _showWelcomeScreen,
             child: const Text('Sign up'),
           ),
         ],
       ),
     );
+  }
+
+  void _showWelcomeScreen() {
+    Navigator.of(context).pushNamed('/welcome');
   }
 }
